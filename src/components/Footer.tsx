@@ -30,7 +30,7 @@ export default function Footer() {
           {/* brand column */}
           <div className="lg:col-span-2">
             <img
-              src="/website/logo-short.svg"
+              src="/logo-short.svg"
               alt="Avenue Advisors"
               width={70}
               height={28}
