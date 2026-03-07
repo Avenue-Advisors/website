@@ -114,7 +114,7 @@ export default function Hero() {
 
         <motion.h1
           variants={fadeUp}
-          className="max-w-3xl text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.15] tracking-tight text-white font-[family-name:var(--font-display)]"
+          className="max-w-3xl text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.22] tracking-tight text-white font-[family-name:var(--font-display)]"
         >
           <span className="gradient-text-shimmer">Intelligent</span>{" "}
           Infrastructure for Commercial Real Estate
