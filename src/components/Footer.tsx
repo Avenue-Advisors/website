@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 
 const colServices = [
   { label: "Data Governance", href: "#services" },
@@ -30,8 +29,8 @@ export default function Footer() {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           {/* brand column */}
           <div className="lg:col-span-2">
-            <Image
-              src="/logo-short.svg"
+            <img
+              src="/website/logo-short.svg"
               alt="Avenue Advisors"
               width={70}
               height={28}

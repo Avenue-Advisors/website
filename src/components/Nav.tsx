@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const links = [
@@ -41,21 +40,19 @@ export default function Nav() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <a href="#" className="relative shrink-0">
-          <Image
-            src="/logo-full.svg"
+          <img
+            src="/website/logo-full.svg"
             alt="Avenue Advisors"
             width={250}
             height={28}
-            priority
-            className="hidden md:block"
+                        className="hidden md:block"
           />
-          <Image
-            src="/logo-short.svg"
+          <img
+            src="/website/logo-short.svg"
             alt="Avenue Advisors"
             width={70}
             height={28}
-            priority
-            className="md:hidden"
+                        className="md:hidden"
           />
         </a>
 
