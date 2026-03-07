@@ -287,6 +287,12 @@ body {
 }
 
 
+
+/* ── Testimonial cards: no hover lift ──────────────────────────── */
+.testimonial-track .glass-card:hover {
+  transform: none;
+}
+
 /* ── Mobile overflow prevention ────────────────────────────────── */
 html {
   overflow-x: hidden;

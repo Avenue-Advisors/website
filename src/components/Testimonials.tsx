@@ -92,7 +92,7 @@ export default function Testimonials() {
                 {cards.map((t, i) => (
                   <div
                     key={i}
-                    className="glass-card shrink-0 w-[85vw] sm:w-[420px] flex flex-col"
+                    className="glass-card shrink-0 w-[85vw] sm:w-[420px] flex flex-col hover:!transform-none"
                   >
                     <Quote
                       size={18}
