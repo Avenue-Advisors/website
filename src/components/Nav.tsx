@@ -42,7 +42,7 @@ export default function Nav() {
         {/* Logo */}
         <a href="#" className="relative shrink-0">
           <Image
-            src="/LongTextLogo (2).svg"
+            src="/logo-full.svg"
             alt="Avenue Advisors"
             width={250}
             height={28}
@@ -50,7 +50,7 @@ export default function Nav() {
             className="hidden md:block"
           />
           <Image
-            src="/shortLogo (2).svg"
+            src="/logo-short.svg"
             alt="Avenue Advisors"
             width={70}
             height={28}
