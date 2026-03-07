@@ -7,21 +7,21 @@ import { Quote } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "Quarterly reporting used to eat two full weeks. Avenue came in, rebuilt the whole pipeline, and now we close the books in two days. Completely changed how my team spends their time.\u2009\u2014\u2009we now close the books in under two days.",
+      "Our quarterly close used to take two weeks. Avenue rebuilt the pipeline and got it down to two days. My team actually has time for real work now.",
     role: "VP of Asset Management",
     org: "Multifamily Owner-Operator \u00b7 12,000+ Units",
     metric: "85% faster reporting cycles",
   },
   {
     quote:
-      "We talked to a lot of firms that wanted to give us off-the-shelf dashboards. Avenue was the only team that actually got how our fund reports to LPs. What they built, our analysts use daily. That never happens.",
+      "Every other firm pitched us cookie-cutter dashboards. Avenue actually sat down and learned how we report to our LPs. The tool they built is the only one my analysts open every morning.",
     role: "Managing Director, Portfolio Analytics",
     org: "Institutional Investment Manager \u00b7 $4B+ AUM",
     metric: "100% analyst adoption",
   },
   {
     quote:
-      "Lease abstractions used to tie up a paralegal for days. Now they run on their own with a quick review step. We moved three people onto work that actually moves the needle.",
+      "We had a paralegal spending days on lease abstractions. Avenue automated the whole thing with a review step baked in. Freed up three people for higher-impact projects.",
     role: "Chief Operating Officer",
     org: "National Office & Industrial Platform",
     metric: "3 FTEs redeployed to strategy",
