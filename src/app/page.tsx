@@ -6,6 +6,7 @@ import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
 import Industries from "@/components/Industries";
 import Stats from "@/components/Stats";
+import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -20,6 +21,7 @@ export default function Home() {
       <Process />
       <Industries />
       <Stats />
+      <Testimonials />
       <CTA />
       <Footer />
     </main>
