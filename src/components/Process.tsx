@@ -52,9 +52,9 @@ export default function Process() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] max-w-xl leading-tight"
+            className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] max-w-xl leading-tight"
           >
-            From insight to&nbsp;automation
+            From insight to automation
           </motion.h2>
         </motion.div>
 

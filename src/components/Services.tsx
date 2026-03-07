@@ -62,9 +62,9 @@ export default function Services() {
           </motion.p>
           <motion.h2
             variants={item}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] max-w-2xl leading-tight"
+            className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] max-w-2xl leading-tight"
           >
-            Precision-Engineered Data&nbsp;Solutions
+            Precision-Engineered Data Solutions
           </motion.h2>
 
           <motion.div
@@ -73,7 +73,7 @@ export default function Services() {
           >
             {services.map((s) => (
               <motion.div key={s.num} variants={item} className="glass-card group">
-                <span className="block text-4xl font-bold text-navy-bright/40 font-[family-name:var(--font-mono)] mb-4 select-none">
+                <span className="block text-3xl sm:text-4xl font-bold text-navy-bright/40 font-[family-name:var(--font-mono)] mb-4 select-none">
                   {s.num}
                 </span>
                 <s.Icon

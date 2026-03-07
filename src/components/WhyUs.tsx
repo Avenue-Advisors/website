@@ -69,9 +69,9 @@ export default function WhyUs() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight font-[family-name:var(--font-display)]"
+            className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight font-[family-name:var(--font-display)]"
           >
-            Built for the complexity of commercial&nbsp;real&nbsp;estate
+            Built for the complexity of commercial real estate
           </motion.h2>
           <motion.p
             variants={fadeUp}

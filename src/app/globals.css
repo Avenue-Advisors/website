@@ -140,7 +140,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 2rem;
+  padding: 0.75rem 1.5rem;
   background: linear-gradient(135deg, var(--navy-bright), var(--blue-muted));
   color: var(--white);
   font-family: var(--font-body), system-ui, sans-serif;
@@ -165,7 +165,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 2rem;
+  padding: 0.75rem 1.5rem;
   background: transparent;
   color: var(--blue-ice);
   font-family: var(--font-body), system-ui, sans-serif;

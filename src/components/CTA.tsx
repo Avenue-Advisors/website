@@ -48,9 +48,9 @@ export default function CTA() {
       >
         <motion.h2
           variants={fadeUp}
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] leading-tight"
+          className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] leading-tight"
         >
-          Ready to transform how your firm&nbsp;operates?
+          Ready to transform how your firm operates?
         </motion.h2>
         <motion.p
           variants={fadeUp}

@@ -36,7 +36,7 @@ export default function Footer() {
               height={28}
             />
             <p className="mt-4 text-sm text-silver/55 leading-relaxed max-w-xs">
-              Intelligent infrastructure for commercial real&nbsp;estate.
+              Intelligent infrastructure for commercial real estate.
             </p>
           </div>
 

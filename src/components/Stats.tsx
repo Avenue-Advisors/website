@@ -43,7 +43,7 @@ function StatCell({ end, suffix, label, trigger }: {
   const count = useCountUp(end, 1.8, trigger);
   return (
     <div className="flex flex-col items-center text-center">
-      <span className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white font-[family-name:var(--font-display)] tracking-tight">
+      <span className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white font-[family-name:var(--font-display)] tracking-tight">
         {count}
         <span className="text-blue-electric">{suffix}</span>
       </span>
