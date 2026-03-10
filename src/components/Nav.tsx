@@ -45,9 +45,7 @@ export default function Nav() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           {/* Logo */}
           <a href="#" className="relative shrink-0">
-            <img
-              src="/logo-full.svg"
-              alt="Avenue Advisors"
+            <img src="/logo-full.svg" alt="Avenue Advisors"
               width={250}
               height={28}
               className="hidden md:block"
