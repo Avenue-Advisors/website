@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { useLanguage } from "@/components/LanguageProvider";
 
@@ -70,172 +70,109 @@ const chaptersByLanguage = {
 
 const scenes = [
   {
-    outer: "polygon(50% 2%, 90% 16%, 98% 52%, 80% 88%, 50% 98%, 18% 86%, 4% 50%, 18% 14%)",
-    mid: "polygon(50% 8%, 86% 28%, 76% 88%, 24% 88%, 14% 28%)",
-    core: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-    pathA: "M120 760 L280 620 L420 690 L560 520 L700 590 L860 430",
-    pathB: "M140 520 L280 460 L450 370 L600 410 L780 330 L900 220",
-    orbitX: "12%",
-    orbitY: "16%",
+    primary: "M84 804 C154 782, 242 738, 306 694 C385 640, 448 590, 526 548 C610 502, 708 458, 816 390 C878 350, 926 308, 958 250",
   },
   {
-    outer: "polygon(50% 4%, 94% 24%, 94% 76%, 50% 96%, 6% 76%, 6% 24%)",
-    mid: "polygon(50% 2%, 96% 36%, 80% 96%, 20% 96%, 4% 36%)",
-    core: "polygon(20% 12%, 84% 8%, 96% 60%, 62% 98%, 14% 84%)",
-    pathA: "M100 740 L260 640 L400 620 L520 500 L730 540 L900 360",
-    pathB: "M120 500 L290 420 L460 390 L610 350 L790 300 L910 170",
-    orbitX: "72%",
-    orbitY: "12%",
+    primary: "M82 804 C170 778, 238 742, 322 694 C396 652, 474 602, 548 546 C630 484, 706 426, 806 356 C872 308, 926 258, 964 196",
   },
   {
-    outer: "polygon(14% 10%, 84% 4%, 98% 46%, 88% 90%, 34% 98%, 6% 62%)",
-    mid: "polygon(6% 28%, 56% 6%, 98% 36%, 82% 92%, 20% 98%)",
-    core: "polygon(4% 40%, 40% 0%, 96% 24%, 80% 90%, 20% 96%)",
-    pathA: "M90 790 L260 660 L390 560 L560 570 L720 490 L900 390",
-    pathB: "M110 560 L290 470 L440 330 L610 300 L790 240 L900 170",
-    orbitX: "14%",
-    orbitY: "72%",
+    primary: "M80 812 C176 792, 264 756, 356 700 C444 648, 522 586, 624 518 C716 456, 796 406, 866 346 C916 304, 950 254, 972 188",
   },
   {
-    outer: "polygon(50% 2%, 80% 10%, 98% 38%, 94% 78%, 64% 98%, 26% 98%, 4% 66%, 8% 22%)",
-    mid: "polygon(10% 30%, 42% 2%, 90% 14%, 98% 66%, 66% 98%, 16% 88%)",
-    core: "polygon(50% 6%, 88% 26%, 90% 80%, 52% 98%, 12% 72%, 14% 22%)",
-    pathA: "M100 760 L250 680 L420 600 L580 520 L730 470 L900 340",
-    pathB: "M110 540 L250 470 L420 420 L570 340 L760 260 L900 180",
-    orbitX: "72%",
-    orbitY: "72%",
+    primary: "M74 818 C186 786, 286 742, 392 676 C494 612, 592 542, 690 468 C782 398, 854 326, 914 242 C940 206, 960 168, 978 126",
   },
 ] as const;
 
-function PolygonStage({
+function LineStage({
   progress,
   activeChapter,
-  language,
 }: {
   progress: MotionValue<number>;
   activeChapter: number;
-  language: "es" | "en";
 }) {
   const scene = scenes[activeChapter] ?? scenes[0];
-  const rotateOuter = useTransform(progress, [0, 1], [-12, 26]);
-  const rotateInner = useTransform(progress, [0, 1], [18, -22]);
-  const tilt = useTransform(progress, [0, 1], [0, 10]);
-  const yLift = useTransform(progress, [0, 1], [40, -70]);
-  const shutterA = useTransform(progress, [0, 1], [0, -120]);
-  const shutterB = useTransform(progress, [0, 1], [0, 120]);
-  const scalePulse = useTransform(progress, [0, 0.5, 1], [0.92, 1.12, 0.98]);
-  const glow = useTransform(progress, [0, 0.5, 1], [0.3, 0.64, 0.34]);
-  const pathLength = useTransform(progress, [0.1, 0.9], [0, 1]);
-  const spin = useTransform(progress, [0, 1], [0, 160]);
-  const chapterTitle =
-    language === "es"
-      ? ["Descubrimiento", "Sistema", "Escala", "Resultados"][activeChapter] ?? "Descubrimiento"
-      : ["Discovery", "System", "Scale", "Results"][activeChapter] ?? "Discovery";
+  const frameShift = useTransform(progress, [0, 1], [0, -42]);
+  const lowerFrameShift = useTransform(progress, [0, 1], [0, 32]);
+  const lineLength = useTransform(progress, [0.05, 0.92], [0.02, 1]);
+  const lineGlow = useTransform(progress, [0, 0.5, 1], [0.08, 0.22, 0.12]);
+  const pulseOffset = useTransform(progress, [0, 1], [180, -260]);
+  const stageScale = useTransform(progress, [0, 0.5, 1], [1.08, 1, 0.96]);
+  const stageRotate = useTransform(progress, [0, 0.5, 1], [-5, 0, 4]);
+  const frameOpacity = useTransform(progress, [0, 0.25, 1], [0.28, 0.52, 0.34]);
 
   return (
-    <div className="relative h-full w-full overflow-hidden border border-[#0F2742]/20 bg-[#09172A] shadow-[0_32px_90px_rgba(8,20,42,0.38)]">
+    <div className="relative h-full w-full overflow-hidden border border-[#0F2742]/10 bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,0.96),rgba(236,243,250,0.98)_42%,rgba(223,233,244,1)_100%)] shadow-[0_28px_90px_rgba(15,39,66,0.08)]">
+      <motion.div className="absolute inset-x-0 top-[14%] h-px bg-[#0F2742]/16" style={{ y: frameShift, opacity: frameOpacity }} />
+      <motion.div className="absolute inset-x-0 bottom-[16%] h-px bg-[#0F2742]/14" style={{ y: lowerFrameShift, opacity: frameOpacity }} />
+      <motion.div className="absolute left-[8%] top-[10%] bottom-[10%] w-px bg-[#0F2742]/10" style={{ opacity: frameOpacity }} />
+      <motion.div className="absolute right-[8%] top-[10%] bottom-[10%] w-px bg-[#0F2742]/10" style={{ opacity: frameOpacity }} />
       <motion.div
-        className="absolute -left-[15%] -top-[20%] h-[72%] w-[72%] blur-3xl"
-        style={{
-          rotate: spin,
-          opacity: glow,
-          background:
-            "conic-gradient(from 0deg, rgba(47,120,196,0.34), transparent 42%, rgba(47,120,196,0.18), transparent 74%, rgba(47,120,196,0.34))",
-        }}
+        className="absolute left-1/2 top-1/2 h-[54%] w-[54%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[110px]"
+        style={{ opacity: lineGlow, background: "rgba(15,39,66,0.12)" }}
       />
       <motion.div
-        className="absolute -bottom-[25%] -right-[15%] h-[66%] w-[66%] rounded-full blur-[84px]"
-        style={{
-          scale: scalePulse,
-          opacity: glow,
-          background: "rgba(47,120,196,0.24)",
-        }}
-      />
-
-      <motion.div className="absolute inset-x-0 top-0 h-[22%] bg-gradient-to-b from-[#071325] to-transparent" style={{ y: shutterA }} />
-      <motion.div className="absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-t from-[#071325] to-transparent" style={{ y: shutterB }} />
-
-      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.14) 1px, transparent 1px)", backgroundSize: "42px 42px" }} />
-
-      <motion.div
-        className="absolute left-1/2 top-1/2 h-[74%] w-[74%] -translate-x-1/2 -translate-y-1/2 border border-white/38"
-        animate={{ clipPath: scene.outer }}
-        transition={{ duration: 1.1, ease: [0.23, 1, 0.32, 1] }}
-        style={{
-          rotate: rotateOuter,
-          rotateX: tilt,
-        }}
-      />
-      <motion.div
-        className="absolute left-1/2 top-1/2 h-[54%] w-[54%] -translate-x-1/2 -translate-y-1/2"
-        animate={{ clipPath: scene.mid }}
-        transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-        style={{
-          background: "rgba(47,120,196,0.24)",
-          rotate: rotateInner,
-          y: yLift,
-          scale: scalePulse,
-          opacity: glow,
-        }}
-      />
-      <motion.div
-        className="absolute h-28 w-28 border border-white/55"
-        animate={{
-          left: scene.orbitX,
-          top: scene.orbitY,
-          clipPath: scene.core,
-        }}
-        transition={{ duration: 1.15, ease: [0.23, 1, 0.32, 1] }}
-        style={{
-          rotate: rotateOuter,
-        }}
-      />
-      <motion.div
-        className="absolute bottom-[12%] right-[10%] h-40 w-40 border border-white/35"
-        animate={{ clipPath: scene.core }}
-        transition={{ duration: 1.15, ease: [0.23, 1, 0.32, 1] }}
-        style={{
-          rotate: rotateInner,
-        }}
-      />
-
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 1000" aria-hidden="true">
-        <defs>
-          <linearGradient id="chapter-line" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#2F78C4" />
-            <stop offset="100%" stopColor="#ffffff" />
-          </linearGradient>
-        </defs>
-        <motion.path
-          d={scene.pathA}
-          fill="none"
-          stroke="url(#chapter-line)"
-          strokeWidth="9"
-          strokeLinecap="round"
-          animate={{ d: scene.pathA }}
-          transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-          style={{ pathLength }}
-        />
-        <motion.path
-          d={scene.pathB}
-          fill="none"
-          stroke="rgba(255,255,255,0.78)"
-          strokeWidth="5"
-          strokeLinecap="round"
-          animate={{ d: scene.pathB }}
-          transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-          style={{ pathLength }}
-        />
-      </svg>
-
-      <motion.div
-        className="absolute bottom-6 left-6 right-6 border-t border-white/25 pt-4"
-        style={{ opacity: glow }}
+        className="absolute inset-0"
+        style={{ scale: stageScale, rotate: stageRotate, transformOrigin: "50% 50%" }}
       >
-        <p className="text-[10px] uppercase tracking-[0.22em] text-white/80">
-          Avenue Advisors Live Engine / {chapterTitle}
-        </p>
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 1000" aria-hidden="true">
+          <defs>
+            <filter id="line-blur">
+              <feGaussianBlur stdDeviation="12" />
+            </filter>
+            <linearGradient id="line-core" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#0f2742" />
+              <stop offset="52%" stopColor="#173a61" />
+              <stop offset="100%" stopColor="#081321" />
+            </linearGradient>
+          </defs>
+          <motion.path
+            d={scene.primary}
+            fill="none"
+            stroke="rgba(34,76,122,0.14)"
+            strokeWidth="36"
+            strokeLinecap="round"
+            animate={{ d: scene.primary }}
+            transition={{ duration: 1.1, ease: [0.2, 1, 0.3, 1] }}
+            style={{ pathLength: lineLength, filter: "url(#line-blur)" }}
+          />
+          <motion.path
+            d={scene.primary}
+            fill="none"
+            stroke="url(#line-core)"
+            strokeWidth="12"
+            strokeLinecap="round"
+            animate={{ d: scene.primary }}
+            transition={{ duration: 1.1, ease: [0.2, 1, 0.3, 1] }}
+            style={{ pathLength: lineLength }}
+          />
+          <motion.path
+            d={scene.primary}
+            fill="none"
+            stroke="rgba(255,255,255,0.78)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            animate={{ d: scene.primary }}
+            transition={{ duration: 1.1, ease: [0.2, 1, 0.3, 1] }}
+            style={{ pathLength: lineLength }}
+          />
+          <motion.path
+            d={scene.primary}
+            fill="none"
+            stroke="rgba(255,255,255,0.96)"
+            strokeWidth="10"
+            strokeLinecap="round"
+            strokeDasharray="140 900"
+            animate={{ d: scene.primary }}
+            transition={{ duration: 1.1, ease: [0.2, 1, 0.3, 1] }}
+            style={{ pathLength: lineLength, strokeDashoffset: pulseOffset }}
+          />
+        </svg>
       </motion.div>
+      <motion.path
+        className="absolute bottom-[12%] left-[10%] right-[10%] h-px bg-[linear-gradient(90deg,transparent,rgba(15,39,66,0.26),transparent)]"
+        animate={{ opacity: [0.28, 0.5, 0.28] }}
+        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+      />
     </div>
   );
 }
@@ -261,12 +198,12 @@ export default function StoryFlow() {
 
   return (
     <section ref={rootRef} className="relative border-b border-[#0F2742]/15 pt-32 md:pt-36" aria-label="Narrative scroll experience">
-      <div className="fixed left-0 right-0 top-[72px] z-[55] h-[2px] bg-[#0F2742]/10">
+      <div className="fixed left-0 right-0 top-[72px] z-[55] h-px bg-[#0F2742]/10">
         <motion.div
           className="h-full origin-left"
           style={{
             scaleX: scrollYProgress,
-            background: "#2F78C4",
+            background: "#0F2742",
           }}
         />
       </div>
@@ -281,7 +218,7 @@ export default function StoryFlow() {
         >
           {language === "es" ? "Una experiencia que demuestra" : "An experience that proves"}
           <br />
-          <span className="italic text-[#2F78C4]">
+          <span className="text-black/45">
             {language === "es" ? "como pensamos, disenamos y ejecutamos" : "how we think, design, and execute"}
           </span>
         </motion.h1>
@@ -293,20 +230,17 @@ export default function StoryFlow() {
             <article
               key={chapter.id}
               id={chapter.id}
-              className={`group min-h-[80vh] border-t border-[#0F2742]/20 py-10 transition-[opacity,transform] duration-700 md:min-h-[92vh] ${
-                activeChapter === index ? "opacity-100" : "opacity-50"
+              className={`group min-h-[80vh] border-t border-[#0F2742]/16 py-10 transition-[opacity,transform] duration-700 md:min-h-[92vh] ${
+                activeChapter === index ? "opacity-100" : "opacity-[0.42]"
               }`}
-              style={{ transform: activeChapter === index ? "translateX(0px)" : "translateX(8px)" }}
+              style={{ transform: activeChapter === index ? "translateX(0px)" : "translateX(10px)" }}
             >
               <p className="text-[10px] uppercase tracking-[0.22em] text-[#4F6680]">{chapter.label}</p>
-              <h2
-                className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-[0.95] tracking-tight text-[#0F2742] sm:text-5xl md:text-6xl"
-                style={{ color: activeChapter === index ? "#2F78C4" : undefined }}
-              >
+              <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-[0.95] tracking-tight text-[#0F2742] sm:text-5xl md:text-6xl">
                 {chapter.title}
               </h2>
               <p className="mt-7 max-w-xl text-base leading-relaxed text-[#4F6680] md:text-lg">{chapter.body}</p>
-              <p className="mt-8 inline-block border border-[#2F78C4]/35 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-[#2F78C4]">
+              <p className="mt-8 inline-block border border-black/12 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-[#0F2742]">
                 {chapter.accent}
               </p>
             </article>
@@ -315,10 +249,10 @@ export default function StoryFlow() {
 
         <div className="lg:col-span-6">
           <div className="sticky top-24 hidden h-[72vh] lg:block">
-            <PolygonStage progress={scrollYProgress} activeChapter={activeChapter} language={language} />
+            <LineStage progress={scrollYProgress} activeChapter={activeChapter} />
           </div>
           <div className="mt-3 h-[50vh] lg:hidden">
-            <PolygonStage progress={scrollYProgress} activeChapter={activeChapter} language={language} />
+            <LineStage progress={scrollYProgress} activeChapter={activeChapter} />
           </div>
         </div>
       </div>
