@@ -218,7 +218,7 @@ export default function StoryFlow() {
         >
           {language === "es" ? "Una experiencia que demuestra" : "An experience that proves"}
           <br />
-          <span className="text-black/45">
+          <span className="text-[#2F78C4]">
             {language === "es" ? "como pensamos, disenamos y ejecutamos" : "how we think, design, and execute"}
           </span>
         </motion.h1>
@@ -236,11 +236,14 @@ export default function StoryFlow() {
               style={{ transform: activeChapter === index ? "translateX(0px)" : "translateX(10px)" }}
             >
               <p className="text-[10px] uppercase tracking-[0.22em] text-[#4F6680]">{chapter.label}</p>
-              <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-[0.95] tracking-tight text-[#0F2742] sm:text-5xl md:text-6xl">
+              <h2
+                className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-[0.95] tracking-tight text-[#0F2742] sm:text-5xl md:text-6xl"
+                style={{ color: activeChapter === index ? "#2F78C4" : undefined }}
+              >
                 {chapter.title}
               </h2>
               <p className="mt-7 max-w-xl text-base leading-relaxed text-[#4F6680] md:text-lg">{chapter.body}</p>
-              <p className="mt-8 inline-block border border-black/12 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-[#0F2742]">
+              <p className="mt-8 inline-block border border-[#2F78C4]/35 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-[#2F78C4]">
                 {chapter.accent}
               </p>
             </article>
