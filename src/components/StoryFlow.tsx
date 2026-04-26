@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { useLanguage } from "@/components/LanguageProvider";
 
@@ -68,59 +68,134 @@ const chaptersByLanguage = {
   ],
 } as const;
 
-function PolygonStage({ progress }: { progress: MotionValue<number> }) {
-  const rotateOuter = useTransform(progress, [0, 1], [-8, 22]);
-  const rotateInner = useTransform(progress, [0, 1], [14, -18]);
-  const yLift = useTransform(progress, [0, 1], [50, -70]);
-  const glow = useTransform(progress, [0, 0.5, 1], [0.25, 0.55, 0.3]);
+const chapterThemes = [
+  {
+    accent: "#2F78C4",
+    accentSoft: "rgba(47,120,196,0.22)",
+    backdropA: "#081B32",
+    backdropB: "#12345D",
+  },
+  {
+    accent: "#43A6FF",
+    accentSoft: "rgba(67,166,255,0.24)",
+    backdropA: "#071A2A",
+    backdropB: "#0C4871",
+  },
+  {
+    accent: "#7A95FF",
+    accentSoft: "rgba(122,149,255,0.24)",
+    backdropA: "#111A3A",
+    backdropB: "#2D3E90",
+  },
+  {
+    accent: "#27D4C6",
+    accentSoft: "rgba(39,212,198,0.24)",
+    backdropA: "#072B33",
+    backdropB: "#11616D",
+  },
+] as const;
+
+function PolygonStage({
+  progress,
+  activeChapter,
+  language,
+}: {
+  progress: MotionValue<number>;
+  activeChapter: number;
+  language: "es" | "en";
+}) {
+  const theme = chapterThemes[activeChapter] ?? chapterThemes[0];
+  const rotateOuter = useTransform(progress, [0, 1], [-12, 36]);
+  const rotateInner = useTransform(progress, [0, 1], [22, -30]);
+  const rotateOrbital = useTransform(progress, [0, 1], [0, 220]);
+  const yLift = useTransform(progress, [0, 1], [65, -92]);
+  const scalePulse = useTransform(progress, [0, 0.5, 1], [0.9, 1.18, 0.94]);
+  const glow = useTransform(progress, [0, 0.5, 1], [0.24, 0.74, 0.38]);
   const pathLength = useTransform(progress, [0.1, 0.9], [0, 1]);
+  const spin = useTransform(progress, [0, 1], [0, 210]);
+  const chapterTitle =
+    language === "es"
+      ? ["Descubrimiento", "Sistema", "Escala", "Resultados"][activeChapter] ?? "Descubrimiento"
+      : ["Discovery", "System", "Scale", "Results"][activeChapter] ?? "Discovery";
 
   return (
-    <div className="relative h-full w-full overflow-hidden border border-[#0F2742]/20 bg-gradient-to-br from-[#F4F8FF] via-[#DFEAF7] to-[#CCDDF4] shadow-[0_18px_48px_rgba(15,39,66,0.14)]">
+    <div
+      className="relative h-full w-full overflow-hidden border border-white/20 shadow-[0_28px_80px_rgba(8,20,42,0.38)]"
+      style={{
+        background: `linear-gradient(135deg, ${theme.backdropA} 0%, ${theme.backdropB} 100%)`,
+      }}
+    >
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[68%] w-[68%] -translate-x-1/2 -translate-y-1/2 border border-[#0F2742]/25"
+        className="absolute -left-[15%] -top-[20%] h-[72%] w-[72%] blur-3xl"
+        style={{
+          rotate: spin,
+          opacity: glow,
+          background: `conic-gradient(from 0deg, ${theme.accentSoft}, transparent 45%, ${theme.accentSoft}, transparent 75%, ${theme.accentSoft})`,
+        }}
+      />
+      <motion.div
+        className="absolute -bottom-[25%] -right-[15%] h-[66%] w-[66%] rounded-full blur-[84px]"
+        style={{
+          scale: scalePulse,
+          opacity: glow,
+          background: theme.accentSoft,
+        }}
+      />
+
+      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.14) 1px, transparent 1px)", backgroundSize: "42px 42px" }} />
+
+      <motion.div
+        className="absolute left-1/2 top-1/2 h-[74%] w-[74%] -translate-x-1/2 -translate-y-1/2 border border-white/35"
         style={{
           clipPath: "polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)",
           rotate: rotateOuter,
         }}
       />
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[48%] w-[48%] -translate-x-1/2 -translate-y-1/2 bg-[#2F78C4]/20"
+        className="absolute left-1/2 top-1/2 h-[52%] w-[52%] -translate-x-1/2 -translate-y-1/2"
         style={{
           clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)",
+          background: theme.accentSoft,
           rotate: rotateInner,
           y: yLift,
+          scale: scalePulse,
           opacity: glow,
         }}
       />
       <motion.div
-        className="absolute left-[12%] top-[16%] h-28 w-28 border border-[#2F78C4]/45"
+        className="absolute left-[8%] top-[12%] h-28 w-28 border border-white/50"
         style={{
           clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-          rotate: rotateInner,
+          rotate: rotateOrbital,
         }}
       />
       <motion.div
-        className="absolute bottom-[14%] right-[14%] h-36 w-36 border border-[#0F2742]/25"
+        className="absolute bottom-[12%] right-[10%] h-40 w-40 border border-white/40"
         style={{
           clipPath: "polygon(0% 20%, 60% 0%, 100% 35%, 85% 100%, 25% 85%)",
-          rotate: rotateOuter,
+          rotate: rotateOrbital,
         }}
       />
 
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 1000" aria-hidden="true">
+        <defs>
+          <linearGradient id="chapter-line" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor={theme.accent} />
+            <stop offset="100%" stopColor="#ffffff" />
+          </linearGradient>
+        </defs>
         <motion.path
-          d="M110 760 L260 650 L410 700 L540 560 L690 590 L860 440"
+          d="M90 790 L250 640 L390 710 L540 540 L710 620 L900 390"
           fill="none"
-          stroke="#2F78C4"
-          strokeWidth="8"
+          stroke="url(#chapter-line)"
+          strokeWidth="9"
           strokeLinecap="round"
           style={{ pathLength }}
         />
         <motion.path
-          d="M140 490 L280 470 L430 390 L580 430 L740 360 L860 260"
+          d="M140 520 L300 460 L460 360 L620 420 L790 320 L900 210"
           fill="none"
-          stroke="#0F2742"
+          stroke="rgba(255,255,255,0.78)"
           strokeWidth="5"
           strokeLinecap="round"
           style={{ pathLength }}
@@ -128,11 +203,11 @@ function PolygonStage({ progress }: { progress: MotionValue<number> }) {
       </svg>
 
       <motion.div
-        className="absolute bottom-6 left-6 right-6 border-t border-[#0F2742]/15 pt-4"
+        className="absolute bottom-6 left-6 right-6 border-t border-white/25 pt-4"
         style={{ opacity: glow }}
       >
-        <p className="text-[10px] uppercase tracking-[0.22em] text-[#4F6680]">
-          Avenue Advisors Scroll Engine / Narrative Canvas
+        <p className="text-[10px] uppercase tracking-[0.22em] text-white/80">
+          Avenue Advisors Live Engine / {chapterTitle}
         </p>
       </motion.div>
     </div>
@@ -143,9 +218,16 @@ export default function StoryFlow() {
   const rootRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
   const chapters = chaptersByLanguage[language];
+  const [activeChapter, setActiveChapter] = useState(0);
   const { scrollYProgress } = useScroll({
     target: rootRef,
     offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const raw = Math.floor(latest * chapters.length);
+    const bounded = Math.max(0, Math.min(chapters.length - 1, raw));
+    setActiveChapter(bounded);
   });
 
   const titleY = useTransform(scrollYProgress, [0, 0.22], [0, -70]);
@@ -153,6 +235,16 @@ export default function StoryFlow() {
 
   return (
     <section ref={rootRef} className="relative border-b border-[#0F2742]/15 pt-32 md:pt-36" aria-label="Narrative scroll experience">
+      <div className="fixed left-0 right-0 top-[72px] z-[55] h-[2px] bg-[#0F2742]/10">
+        <motion.div
+          className="h-full origin-left"
+          style={{
+            scaleX: scrollYProgress,
+            background: chapterThemes[activeChapter]?.accent ?? "#2F78C4",
+          }}
+        />
+      </div>
+
       <div className="lux-container pb-14">
         <motion.p style={{ y: titleY, opacity: titleOpacity }} className="section-label mb-4">
           {language === "es" ? "Avenue Advisors / Historia en Scroll" : "Avenue Advisors / Scroll Story"}
@@ -171,14 +263,19 @@ export default function StoryFlow() {
 
       <div className="lux-container grid gap-12 pb-24 lg:grid-cols-12 lg:gap-10 lg:pb-32">
         <div className="space-y-8 lg:col-span-6">
-          {chapters.map((chapter) => (
+          {chapters.map((chapter, index) => (
             <article
               key={chapter.id}
               id={chapter.id}
-              className="group min-h-[80vh] border-t border-[#0F2742]/20 py-10 md:min-h-[92vh]"
+              className={`group min-h-[80vh] border-t border-[#0F2742]/20 py-10 transition-opacity duration-700 md:min-h-[92vh] ${
+                activeChapter === index ? "opacity-100" : "opacity-50"
+              }`}
             >
               <p className="text-[10px] uppercase tracking-[0.22em] text-[#4F6680]">{chapter.label}</p>
-              <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-[0.95] tracking-tight text-[#0F2742] sm:text-5xl md:text-6xl">
+              <h2
+                className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-[0.95] tracking-tight text-[#0F2742] sm:text-5xl md:text-6xl"
+                style={{ color: activeChapter === index ? chapterThemes[index]?.accent : undefined }}
+              >
                 {chapter.title}
               </h2>
               <p className="mt-7 max-w-xl text-base leading-relaxed text-[#4F6680] md:text-lg">{chapter.body}</p>
@@ -191,10 +288,10 @@ export default function StoryFlow() {
 
         <div className="lg:col-span-6">
           <div className="sticky top-24 hidden h-[72vh] lg:block">
-            <PolygonStage progress={scrollYProgress} />
+            <PolygonStage progress={scrollYProgress} activeChapter={activeChapter} language={language} />
           </div>
           <div className="mt-3 h-[50vh] lg:hidden">
-            <PolygonStage progress={scrollYProgress} />
+            <PolygonStage progress={scrollYProgress} activeChapter={activeChapter} language={language} />
           </div>
         </div>
       </div>
