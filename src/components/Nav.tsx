@@ -30,21 +30,31 @@ export default function Nav() {
   return (
     <>
       <nav
-        className={`fixed top-0 inset-x-0 z-[60] border-b border-[#1A1A1A]/15 transition-colors duration-500 ${
+        className={`fixed top-0 inset-x-0 z-[60] border-b border-[#0F2742]/15 transition-colors duration-500 ${
           scrolled
-            ? "bg-[#F9F8F6]/95"
-            : "bg-[#F9F8F6]/80"
+            ? "bg-[#F4F8FF]/95"
+            : "bg-[#F4F8FF]/80"
         } backdrop-blur-xl`}
         aria-label="Main navigation"
       >
         <div className="lux-container flex h-18 items-center justify-between">
-          <a href="#" className="flex items-end gap-3">
-            <span className="font-[family-name:var(--font-display)] text-2xl leading-none tracking-tight text-[#1A1A1A]">
-              Isla Presencia
-            </span>
-            <span className="hidden text-[10px] uppercase tracking-[0.28em] text-[#6C6863] md:block">
-              Puerto Rico
-            </span>
+          <a href="#" className="relative shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-full.svg"
+              alt="Avenue Advisors"
+              width={250}
+              height={28}
+              className="hidden md:block"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-short.svg"
+              alt="Avenue Advisors"
+              width={70}
+              height={28}
+              className="md:hidden"
+            />
           </a>
 
           <div className="hidden md:flex items-center gap-8">
@@ -52,13 +62,13 @@ export default function Nav() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-xs uppercase tracking-[0.2em] text-[#1A1A1A]/80 transition-colors duration-500 hover:text-[#D4AF37]"
+                className="text-xs uppercase tracking-[0.2em] text-[#0F2742]/80 transition-colors duration-500 hover:text-[#2F78C4]"
               >
                 {l.label}
               </a>
             ))}
             <a
-              href="mailto:hola@islapresencia.com?subject=Consulta%20Inicial"
+              href="mailto:diego.ruiz@avenueadvisors.ai?subject=Consulta%20Inicial"
               className="btn-secondary-lux inline-flex items-center"
             >
               Consulta gratis
@@ -67,7 +77,7 @@ export default function Nav() {
 
           <button
             onClick={() => setOpen(!open)}
-            className="relative z-[70] md:hidden text-[#1A1A1A]"
+            className="relative z-[70] md:hidden text-[#0F2742]"
             aria-label="Toggle menu"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
@@ -76,19 +86,19 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="fixed inset-0 z-[65] flex flex-col items-center justify-center gap-7 bg-[#F9F8F6] md:hidden">
+        <div className="fixed inset-0 z-[65] flex flex-col items-center justify-center gap-7 bg-[#F4F8FF] md:hidden">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="font-[family-name:var(--font-display)] text-4xl text-[#1A1A1A] transition-colors duration-500 hover:text-[#D4AF37]"
+              className="font-[family-name:var(--font-display)] text-4xl text-[#0F2742] transition-colors duration-500 hover:text-[#2F78C4]"
             >
               {l.label}
             </a>
           ))}
           <a
-            href="mailto:hola@islapresencia.com?subject=Consulta%20Inicial"
+            href="mailto:diego.ruiz@avenueadvisors.ai?subject=Consulta%20Inicial"
             onClick={() => setOpen(false)}
             className="btn-primary-lux mt-3"
           >

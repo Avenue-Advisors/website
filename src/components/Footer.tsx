@@ -21,17 +21,21 @@ const colConnect = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#F9F8F6] pb-10 pt-20" aria-label="Site footer">
+    <footer className="relative bg-[#F4F8FF] pb-10 pt-20" aria-label="Site footer">
       <div className="edge-line mb-16" />
 
       <div className="lux-container">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <p className="font-[family-name:var(--font-display)] text-4xl leading-none text-[#1A1A1A]">
-              Isla Presencia
-            </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#6C6863]">
-              Presencia digital de lujo para PyMEs en Puerto Rico.
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-full.svg"
+              alt="Avenue Advisors"
+              width={250}
+              height={28}
+            />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#4F6680]">
+              Websites, SEO y presencia digital para PyMEs en Puerto Rico.
             </p>
           </div>
 
@@ -42,7 +46,7 @@ export default function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="text-sm text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
+                    className="text-sm text-[#4F6680] transition-colors duration-500 hover:text-[#2F78C4]"
                   >
                     {l.label}
                   </a>
@@ -58,7 +62,7 @@ export default function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="text-sm text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
+                    className="text-sm text-[#4F6680] transition-colors duration-500 hover:text-[#2F78C4]"
                   >
                     {l.label}
                   </a>
@@ -74,7 +78,7 @@ export default function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="text-sm text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
+                    className="text-sm text-[#4F6680] transition-colors duration-500 hover:text-[#2F78C4]"
                     {...(l.href.startsWith("http")
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
@@ -88,8 +92,8 @@ export default function Footer() {
         </div>
 
         <div className="edge-line mb-6 mt-16" />
-        <p className="text-[10px] uppercase tracking-[0.2em] text-[#6C6863]">
-          &copy; 2026 Isla Presencia. All rights reserved.
+        <p className="text-[10px] uppercase tracking-[0.2em] text-[#4F6680]">
+          &copy; 2026 Avenue Advisors. All rights reserved.
         </p>
       </div>
     </footer>

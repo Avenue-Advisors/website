@@ -43,11 +43,11 @@ function StatCell({ end, suffix, label, trigger }: {
   const count = useCountUp(end, 1.8, trigger);
   return (
     <div className="flex flex-col items-center text-center">
-      <span className="font-[family-name:var(--font-display)] text-4xl tracking-tight text-[#1A1A1A] sm:text-6xl lg:text-7xl">
+      <span className="font-[family-name:var(--font-display)] text-4xl tracking-tight text-[#0F2742] sm:text-6xl lg:text-7xl">
         {count}
-        <span className="text-[#D4AF37]">{suffix}</span>
+        <span className="text-[#2F78C4]">{suffix}</span>
       </span>
-      <span className="section-label mt-3 text-[#6C6863]">{label}</span>
+      <span className="section-label mt-3 text-[#4F6680]">{label}</span>
     </div>
   );
 }
@@ -67,7 +67,7 @@ export default function Stats() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="bg-[#EBE5DE] py-24 md:py-32" aria-label="Key statistics">
+    <section className="bg-[#DFEAF7] py-24 md:py-32" aria-label="Key statistics">
 
       <motion.div
         ref={ref}

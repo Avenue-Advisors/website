@@ -17,14 +17,14 @@ const inter = Inter({
   display: "swap",
 });
 
-const title = "Isla Presencia | Web y Marketing Local para PyMEs en Puerto Rico";
+const title = "Avenue Advisors | Web y Marketing Local para PyMEs en Puerto Rico";
 const description =
   "Disenamos sitios web, SEO local y estrategias omnicanal para PyMEs en Puerto Rico que quieren mas clientes y una presencia digital impecable.";
 
 export const metadata: Metadata = {
   title,
   description,
-  metadataBase: new URL("https://www.islapresencia.com"),
+  metadataBase: new URL("https://www.avenueadvisors.ai"),
   alternates: {
     canonical: "/",
   },
@@ -35,11 +35,11 @@ export const metadata: Metadata = {
     "presencia digital para negocios",
     "estrategia omnicanal pymes",
     "google business profile puerto rico",
-    "isla presencia",
+    "avenue advisors",
   ],
-  authors: [{ name: "Isla Presencia" }],
-  creator: "Isla Presencia",
-  publisher: "Isla Presencia",
+  authors: [{ name: "Avenue Advisors" }],
+  creator: "Avenue Advisors",
+  publisher: "Avenue Advisors",
   robots: {
     index: true,
     follow: true,
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_PR",
-    url: "https://www.islapresencia.com",
-    siteName: "Isla Presencia",
+    url: "https://www.avenueadvisors.ai",
+    siteName: "Avenue Advisors",
     title,
     description,
     images: [
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Isla Presencia - Presencia digital elegante para PyMEs en Puerto Rico",
+        alt: "Avenue Advisors - Presencia digital para PyMEs en Puerto Rico",
       },
     ],
   },
@@ -89,11 +89,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              name: "Isla Presencia",
-              url: "https://www.islapresencia.com",
-              logo: "https://www.islapresencia.com/logo-full.svg",
+              name: "Avenue Advisors",
+              url: "https://www.avenueadvisors.ai",
+              logo: "https://www.avenueadvisors.ai/logo-full.svg",
               description,
-              email: "hola@islapresencia.com",
+              email: "diego.ruiz@avenueadvisors.ai",
               areaServed: "Puerto Rico",
               serviceType: [
                 "Diseno y desarrollo web",
@@ -117,10 +117,6 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
-        <div className="pointer-events-none fixed inset-y-0 left-[6%] z-40 hidden w-px bg-[#1A1A1A]/20 lg:block" />
-        <div className="pointer-events-none fixed inset-y-0 left-1/3 z-40 hidden w-px bg-[#1A1A1A]/20 lg:block" />
-        <div className="pointer-events-none fixed inset-y-0 left-2/3 z-40 hidden w-px bg-[#1A1A1A]/20 lg:block" />
-        <div className="pointer-events-none fixed inset-y-0 right-[6%] z-40 hidden w-px bg-[#1A1A1A]/20 lg:block" />
         {children}
       </body>
     </html>

@@ -13,7 +13,7 @@ export default function Marquee() {
   const row = items.map((t) => (
     <span
       key={t}
-      className="mx-8 whitespace-nowrap text-xs uppercase tracking-[0.22em] text-[#1A1A1A]/55"
+      className="mx-8 whitespace-nowrap text-xs uppercase tracking-[0.22em] text-[#0F2742]/55"
     >
       {t}
     </span>

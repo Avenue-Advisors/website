@@ -36,15 +36,15 @@ export default function Industries() {
     <section id="industries" className="py-24 md:py-32" aria-label="Industries we serve">
       <div className="lux-container">
         <p className="section-label mb-5">Sectores</p>
-        <h2 className="max-w-4xl font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-[#1A1A1A] md:text-7xl">
+        <h2 className="max-w-4xl font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-[#0F2742] md:text-7xl">
           Experiencia con negocios
           <br />
-          locales de <span className="italic text-[#D4AF37]">alto potencial</span>
+          locales de <span className="italic text-[#2F78C4]">alto potencial</span>
         </h2>
 
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
           {industries.map((ind) => (
-            <article key={ind.title} className="group border-t border-[#1A1A1A] pt-5">
+            <article key={ind.title} className="group border-t border-[#0F2742] pt-5">
               <div className="overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -53,13 +53,13 @@ export default function Industries() {
                   className="image-editorial aspect-[3/4] w-full object-cover"
                 />
               </div>
-              <h3 className="mt-5 font-[family-name:var(--font-display)] text-2xl leading-tight text-[#1A1A1A]">
+              <h3 className="mt-5 font-[family-name:var(--font-display)] text-2xl leading-tight text-[#0F2742]">
                 {ind.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-[#6C6863]">
+              <p className="mt-2 text-sm leading-relaxed text-[#4F6680]">
                 {ind.desc}
               </p>
-              <span className="mt-4 inline-block text-[10px] uppercase tracking-[0.25em] text-[#1A1A1A]/45">
+              <span className="mt-4 inline-block text-[10px] uppercase tracking-[0.25em] text-[#0F2742]/45">
                 SMB Focus
               </span>
             </article>

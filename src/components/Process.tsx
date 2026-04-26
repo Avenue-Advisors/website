@@ -18,31 +18,31 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="border-y border-[#1A1A1A]/15 py-24 md:py-32" aria-label="Our process">
+    <section id="process" className="border-y border-[#0F2742]/15 py-24 md:py-32" aria-label="Our process">
       <div className="lux-container">
         <p className="section-label mb-5">Nuestro proceso</p>
-        <h2 className="max-w-4xl font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-[#1A1A1A] md:text-7xl">
-          Estrategia <span className="italic text-[#D4AF37]">sin complicaciones</span>, ejecucion con detalle
+        <h2 className="max-w-4xl font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-[#0F2742] md:text-7xl">
+          Estrategia <span className="italic text-[#2F78C4]">sin complicaciones</span>, ejecucion con detalle
         </h2>
 
         <div className="mt-16 grid gap-10 md:grid-cols-3 md:gap-8">
           {steps.map((s, i) => (
-            <article key={s.num} className="relative border-t border-[#1A1A1A] pt-7">
+            <article key={s.num} className="relative border-t border-[#0F2742] pt-7">
               {i < steps.length - 1 && (
                 <div
-                  className="absolute -right-4 top-7 hidden h-px w-8 bg-[#1A1A1A]/25 md:block"
+                  className="absolute -right-4 top-7 hidden h-px w-8 bg-[#0F2742]/25 md:block"
                   aria-hidden="true"
                 />
               )}
 
-              <div className="mb-5 font-[family-name:var(--font-display)] text-4xl text-[#1A1A1A]/30">
+              <div className="mb-5 font-[family-name:var(--font-display)] text-4xl text-[#0F2742]/30">
                 {s.num}
               </div>
 
-              <h3 className="mb-2 font-[family-name:var(--font-display)] text-3xl leading-tight text-[#1A1A1A]">
+              <h3 className="mb-2 font-[family-name:var(--font-display)] text-3xl leading-tight text-[#0F2742]">
                 {s.title}
               </h3>
-              <p className="max-w-sm text-base leading-relaxed text-[#6C6863]">
+              <p className="max-w-sm text-base leading-relaxed text-[#4F6680]">
                 {s.desc}
               </p>
             </article>
