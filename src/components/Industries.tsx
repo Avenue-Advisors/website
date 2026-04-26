@@ -1,98 +1,70 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Building2, ShoppingBag, Home, Factory, LayoutGrid } from "lucide-react";
-
 const industries = [
   {
-    Icon: Building2,
-    title: "Office",
-    desc: "Lease optimization, tenant analytics, and space utilization intelligence.",
+    title: "Hospitalidad",
+    desc: "Hoteles boutique, guesthouses y experiencias turisticas.",
+    image:
+      "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format&fit=crop&w=1000&q=80",
   },
   {
-    Icon: ShoppingBag,
-    title: "Retail",
-    desc: "Foot traffic analysis, tenant mix optimization, and revenue forecasting.",
+    title: "Salud y bienestar",
+    desc: "Clinicas, dental, spas y practicas privadas.",
+    image:
+      "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=1000&q=80",
   },
   {
-    Icon: Home,
-    title: "Multifamily",
-    desc: "Resident lifecycle management, rent optimization, and maintenance prediction.",
+    title: "Retail y food",
+    desc: "Tiendas locales, restaurantes y marcas DTC.",
+    image:
+      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1000&q=80",
   },
   {
-    Icon: Factory,
-    title: "Industrial",
-    desc: "Supply chain proximity analysis, warehouse optimization, and IoT integration.",
+    title: "Servicios profesionales",
+    desc: "Firmas legales, contabilidad, seguros y consultorias.",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80",
   },
   {
-    Icon: LayoutGrid,
-    title: "Mixed-Use",
-    desc: "Cross-asset analytics, unified reporting, and portfolio-wide intelligence.",
+    title: "Construccion y home services",
+    desc: "Contratistas, remodelacion y servicios tecnicos.",
+    image:
+      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80",
   },
 ];
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: "easeOut" as const },
-  },
-};
-
 export default function Industries() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="industries" className="py-28 sm:py-36 relative" aria-label="Industries we serve">
-      <div ref={ref} className="mx-auto max-w-7xl px-6">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
-          <motion.p variants={fadeUp} className="label-uppercase mb-4">
-            Our Focus
-          </motion.p>
-          <motion.h2
-            variants={fadeUp}
-            className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] max-w-xl leading-tight"
-          >
-            Built for Commercial Real Estate
-          </motion.h2>
+    <section id="industries" className="py-24 md:py-32" aria-label="Industries we serve">
+      <div className="lux-container">
+        <p className="section-label mb-5">Sectores</p>
+        <h2 className="max-w-4xl font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-[#1A1A1A] md:text-7xl">
+          Experiencia con negocios
+          <br />
+          locales de <span className="italic text-[#D4AF37]">alto potencial</span>
+        </h2>
 
-          <motion.div
-            variants={container}
-            className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5"
-          >
-            {industries.map((ind) => (
-              <motion.div
-                key={ind.title}
-                variants={fadeUp}
-                className="glass-card group cursor-default text-center flex flex-col items-center"
-              >
-                <ind.Icon
-                  size={30}
-                  className="text-blue-light mb-4 transition-colors duration-300 group-hover:text-blue-electric"
-                  strokeWidth={1.5}
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+          {industries.map((ind) => (
+            <article key={ind.title} className="group border-t border-[#1A1A1A] pt-5">
+              <div className="overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={ind.image}
+                  alt={ind.title}
+                  className="image-editorial aspect-[3/4] w-full object-cover"
                 />
-                <h3 className="text-base font-semibold text-white font-[family-name:var(--font-display)] mb-1">
-                  {ind.title}
-                </h3>
-                <p className="text-sm text-silver/60 leading-relaxed mt-1 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  {ind.desc}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
+              </div>
+              <h3 className="mt-5 font-[family-name:var(--font-display)] text-2xl leading-tight text-[#1A1A1A]">
+                {ind.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#6C6863]">
+                {ind.desc}
+              </p>
+              <span className="mt-4 inline-block text-[10px] uppercase tracking-[0.25em] text-[#1A1A1A]/45">
+                SMB Focus
+              </span>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

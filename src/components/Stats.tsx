@@ -27,10 +27,10 @@ function useCountUp(target: number, duration: number, trigger: boolean) {
 
 /* ── stats data ──────────────────────────────────────────────── */
 const stats = [
-  { end: 40, suffix: "+", label: "Workflows Automated" },
-  { end: 10, suffix: "x", label: "Faster Reporting" },
-  { end: 100, suffix: "%", label: "Custom Solutions" },
-  { end: 24, suffix: "/7", label: "Autonomous Operation" },
+  { end: 120, suffix: "+", label: "Web pages optimizadas" },
+  { end: 4, suffix: "x", label: "Mas leads locales" },
+  { end: 92, suffix: "%", label: "Clientes retienen estrategia" },
+  { end: 30, suffix: "d", label: "Primeras mejoras SEO" },
 ];
 
 /* ── individual stat cell ────────────────────────────────────── */
@@ -43,11 +43,11 @@ function StatCell({ end, suffix, label, trigger }: {
   const count = useCountUp(end, 1.8, trigger);
   return (
     <div className="flex flex-col items-center text-center">
-      <span className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white font-[family-name:var(--font-display)] tracking-tight">
+      <span className="font-[family-name:var(--font-display)] text-4xl tracking-tight text-[#1A1A1A] sm:text-6xl lg:text-7xl">
         {count}
-        <span className="text-blue-electric">{suffix}</span>
+        <span className="text-[#D4AF37]">{suffix}</span>
       </span>
-      <span className="mt-3 label-uppercase text-silver/60">{label}</span>
+      <span className="section-label mt-3 text-[#6C6863]">{label}</span>
     </div>
   );
 }
@@ -67,26 +67,14 @@ export default function Stats() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section
-      className="noise-overlay relative py-28 sm:py-36 overflow-hidden"
-      aria-label="Key statistics"
-    >
-      {/* soft radial glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% 50%, rgba(74,158,255,0.06) 0%, transparent 70%)",
-        }}
-        aria-hidden="true"
-      />
+    <section className="bg-[#EBE5DE] py-24 md:py-32" aria-label="Key statistics">
 
       <motion.div
         ref={ref}
         variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="relative z-10 mx-auto max-w-5xl px-6 grid grid-cols-2 md:grid-cols-4 gap-12"
+        className="lux-container grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-12"
       >
         {stats.map((s) => (
           <motion.div key={s.label} variants={fadeUp}>

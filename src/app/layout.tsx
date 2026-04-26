@@ -1,52 +1,45 @@
 import type { Metadata } from "next";
-import { Syne, Outfit, IBM_Plex_Mono } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
-const syne = Syne({
+const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
-  display: "swap",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-mono",
   display: "swap",
 });
 
-const title = "Avenue Advisors | AI & Data Infrastructure for Commercial Real Estate";
+const title = "Isla Presencia | Web y Marketing Local para PyMEs en Puerto Rico";
 const description =
-  "Avenue Advisors builds precision-engineered data pipelines, AI workflows, and agentic automation for commercial real estate operators, investors, and developers.";
+  "Disenamos sitios web, SEO local y estrategias omnicanal para PyMEs en Puerto Rico que quieren mas clientes y una presencia digital impecable.";
 
 export const metadata: Metadata = {
   title,
   description,
-  metadataBase: new URL("https://www.avenueadvisors.ai"),
+  metadataBase: new URL("https://www.islapresencia.com"),
   alternates: {
     canonical: "/",
   },
   keywords: [
-    "commercial real estate data",
-    "CRE analytics",
-    "real estate AI",
-    "agentic AI workflows",
-    "data governance CRE",
-    "real estate automation",
-    "property data pipeline",
-    "AI consulting real estate",
-    "commercial real estate consulting",
-    "Avenue Advisors",
+    "diseno web puerto rico",
+    "seo local puerto rico",
+    "agencia marketing pymes puerto rico",
+    "presencia digital para negocios",
+    "estrategia omnicanal pymes",
+    "google business profile puerto rico",
+    "isla presencia",
   ],
-  authors: [{ name: "Avenue Advisors" }],
-  creator: "Avenue Advisors",
-  publisher: "Avenue Advisors",
+  authors: [{ name: "Isla Presencia" }],
+  creator: "Isla Presencia",
+  publisher: "Isla Presencia",
   robots: {
     index: true,
     follow: true,
@@ -60,9 +53,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://www.avenueadvisors.ai",
-    siteName: "Avenue Advisors",
+    locale: "es_PR",
+    url: "https://www.islapresencia.com",
+    siteName: "Isla Presencia",
     title,
     description,
     images: [
@@ -70,7 +63,7 @@ export const metadata: Metadata = {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Avenue Advisors - Intelligent Infrastructure for Commercial Real Estate",
+        alt: "Isla Presencia - Presencia digital elegante para PyMEs en Puerto Rico",
       },
     ],
   },
@@ -88,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="es" className="scroll-smooth">
       <head>
         <script
           type="application/ld+json"
@@ -96,26 +89,25 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              name: "Avenue Advisors",
-              url: "https://www.avenueadvisors.ai",
-              logo: "https://www.avenueadvisors.ai/logo-full.svg",
+              name: "Isla Presencia",
+              url: "https://www.islapresencia.com",
+              logo: "https://www.islapresencia.com/logo-full.svg",
               description,
-              email: "diego.ruiz@avenueadvisors.ai",
-              areaServed: "United States",
+              email: "hola@islapresencia.com",
+              areaServed: "Puerto Rico",
               serviceType: [
-                "Data Governance Consulting",
-                "AI Implementation",
-                "Agentic AI Workflows",
-                "Data Analytics & Reporting",
+                "Diseno y desarrollo web",
+                "SEO local",
+                "Estrategia omnicanal",
+                "Gestion de presencia digital",
               ],
-              industry: "Commercial Real Estate",
+              industry: "Servicios de marketing digital para PyMEs",
               knowsAbout: [
-                "Commercial Real Estate",
-                "Data Governance",
-                "Artificial Intelligence",
-                "Machine Learning",
-                "Agentic AI",
-                "Workflow Automation",
+                "Small Business Marketing",
+                "SEO",
+                "Brand Presence",
+                "Website Design",
+                "Lead Generation",
               ],
               sameAs: [],
             }),
@@ -123,8 +115,12 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${syne.variable} ${outfit.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${playfair.variable} ${inter.variable} antialiased`}
       >
+        <div className="pointer-events-none fixed inset-y-0 left-[6%] z-40 hidden w-px bg-[#1A1A1A]/20 lg:block" />
+        <div className="pointer-events-none fixed inset-y-0 left-1/3 z-40 hidden w-px bg-[#1A1A1A]/20 lg:block" />
+        <div className="pointer-events-none fixed inset-y-0 left-2/3 z-40 hidden w-px bg-[#1A1A1A]/20 lg:block" />
+        <div className="pointer-events-none fixed inset-y-0 right-[6%] z-40 hidden w-px bg-[#1A1A1A]/20 lg:block" />
         {children}
       </body>
     </html>

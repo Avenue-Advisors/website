@@ -1,115 +1,68 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Building2, Layers, Bot, TrendingUp } from "lucide-react";
+import { Handshake, Brush, MapPinned, Gauge } from "lucide-react";
 
 const points = [
   {
-    Icon: Building2,
-    title: "CRE-Native Expertise",
-    desc: "Deep understanding of commercial real estate data structures, workflows, and regulatory requirements.",
+    Icon: Handshake,
+    title: "Estrategia aterrizada a tu negocio",
+    desc: "No usamos plantillas genericas. Investigamos tu cliente real, tu competencia local y tu ciclo de ventas.",
   },
   {
-    Icon: Layers,
-    title: "End-to-End Delivery",
-    desc: "From strategy through implementation\u200A\u2014\u200Awe build, deploy, and optimize your data infrastructure.",
+    Icon: Brush,
+    title: "Diseno premium, ejecucion simple",
+    desc: "Tu marca se ve impecable en web, redes y anuncios sin perder claridad para vender y escalar.",
   },
   {
-    Icon: Bot,
-    title: "Agentic-First Architecture",
-    desc: "Every solution is designed for autonomous operation\u200A\u2014\u200Areducing manual intervention by design.",
+    Icon: MapPinned,
+    title: "Enfoque Puerto Rico",
+    desc: "Entendemos comportamiento local, lenguaje y geografia comercial para optimizar presencia por zona.",
   },
   {
-    Icon: TrendingUp,
-    title: "Measurable Impact",
-    desc: "We track ROI from day one. Every system we build has clear, quantifiable performance metrics.",
+    Icon: Gauge,
+    title: "Resultados medibles cada mes",
+    desc: "Tableros simples de rendimiento para saber que canal trae clientes y donde invertir el proximo dolar.",
   },
 ];
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.72, ease: "easeOut" as const },
-  },
-};
-
 export default function WhyUs() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section
-      id="about"
-      className="relative py-28 sm:py-36 overflow-hidden"
-      aria-label="Why Avenue Advisors"
-    >
-      {/* decorative background */}
-      <div className="diagonal-lines absolute inset-0 pointer-events-none" aria-hidden="true" />
+    <section id="about" className="bg-[#1A1A1A] py-24 text-[#F9F8F6] md:py-32" aria-label="Why us">
+      <div className="lux-container grid gap-16 md:grid-cols-12 md:gap-12">
+        <div className="md:col-span-5 md:col-start-2">
+          <p className="section-label text-[#EBE5DE]/70">Por que nosotros</p>
+          <h2 className="mt-5 font-[family-name:var(--font-display)] text-5xl leading-[0.92] tracking-tight sm:text-6xl md:text-7xl">
+            Menos ruido,
+            <br />
+            mas <span className="italic text-[#D4AF37]">claridad</span>
+          </h2>
+          <p className="mt-8 max-w-md text-base leading-relaxed text-[#EBE5DE]/80 md:text-lg">
+            Tu equipo necesita una presencia digital que inspire confianza y
+            convierta. Disenamos esa experiencia completa, de la primera visita
+            al cierre.
+          </p>
+        </div>
 
-      <div
-        ref={ref}
-        className="relative z-10 mx-auto max-w-7xl px-6 grid gap-16 lg:grid-cols-2 lg:gap-24 items-start"
-      >
-        {/* Left — statement */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
-          <motion.p variants={fadeUp} className="label-uppercase mb-4">
-            Why Avenue
-          </motion.p>
-          <motion.h2
-            variants={fadeUp}
-            className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight font-[family-name:var(--font-display)]"
-          >
-            Built for the complexity of commercial real estate
-          </motion.h2>
-          <motion.p
-            variants={fadeUp}
-            className="mt-6 text-silver/70 leading-relaxed max-w-md"
-          >
-            We don&rsquo;t adapt generic tools to CRE. We engineer purpose-built
-            data systems that reflect the nuances of your asset class, your
-            markets, and your operations.
-          </motion.p>
-        </motion.div>
-
-        {/* Right — differentiators */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="flex flex-col"
-        >
+        <div className="md:col-span-5 md:col-start-8">
           {points.map((p, i) => (
-            <motion.div
+            <article
               key={p.title}
-              variants={fadeUp}
-              className={`flex gap-5 py-7 ${
-                i !== points.length - 1 ? "border-b border-white/[0.06]" : ""
+              className={`group flex gap-5 py-7 transition-[padding] duration-500 ease-out ${
+                i !== points.length - 1 ? "border-b border-[#EBE5DE]/20" : ""
               }`}
             >
-              <div className="shrink-0 mt-1">
-                <p.Icon size={22} className="text-blue-light" strokeWidth={1.5} />
+              <div className="mt-1 shrink-0">
+                <p.Icon size={22} className="text-[#EBE5DE]/80 transition-colors duration-500 group-hover:text-[#D4AF37]" strokeWidth={1.5} />
               </div>
               <div>
-                <h3 className="text-base font-semibold text-white font-[family-name:var(--font-display)] mb-1">
+                <h3 className="mb-1 font-[family-name:var(--font-display)] text-2xl leading-tight text-[#F9F8F6] transition-colors duration-500 group-hover:text-[#D4AF37]">
                   {p.title}
                 </h3>
-                <p className="text-sm text-silver/65 leading-relaxed">{p.desc}</p>
+                <p className="text-base leading-relaxed text-[#EBE5DE]/75">{p.desc}</p>
               </div>
-            </motion.div>
+            </article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

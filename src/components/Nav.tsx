@@ -1,14 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Insights", href: "#industries" },
-  { label: "Contact", href: "#contact" },
+  { label: "Servicios", href: "#services" },
+  { label: "Proceso", href: "#process" },
+  { label: "Sectores", href: "#industries" },
+  { label: "Contacto", href: "#contact" },
 ];
 
 export default function Nav() {
@@ -30,111 +29,74 @@ export default function Nav() {
 
   return (
     <>
-      {/* ── Top bar ─────────────────────────────────────────── */}
-      <motion.nav
-        initial={{ y: -24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" as const }}
-        className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+      <nav
+        className={`fixed top-0 inset-x-0 z-[60] border-b border-[#1A1A1A]/15 transition-colors duration-500 ${
           scrolled
-            ? "bg-navy-deep/95 shadow-lg shadow-black/20"
-            : "bg-navy-deep/60"
-        } backdrop-blur-2xl border-b border-white/[0.04]`}
+            ? "bg-[#F9F8F6]/95"
+            : "bg-[#F9F8F6]/80"
+        } backdrop-blur-xl`}
         aria-label="Main navigation"
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          {/* Logo */}
-          <a href="#" className="relative shrink-0">
-            <img src="/logo-full.svg" alt="Avenue Advisors"
-              width={250}
-              height={28}
-              className="hidden md:block"
-            />
-            <img
-              src="/logo-short.svg"
-              alt="Avenue Advisors"
-              width={70}
-              height={28}
-              className="md:hidden"
-            />
+        <div className="lux-container flex h-18 items-center justify-between">
+          <a href="#" className="flex items-end gap-3">
+            <span className="font-[family-name:var(--font-display)] text-2xl leading-none tracking-tight text-[#1A1A1A]">
+              Isla Presencia
+            </span>
+            <span className="hidden text-[10px] uppercase tracking-[0.28em] text-[#6C6863] md:block">
+              Puerto Rico
+            </span>
           </a>
 
-          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="text-sm text-silver/80 hover:text-white transition-colors duration-200 font-[family-name:var(--font-body)]"
+                className="text-xs uppercase tracking-[0.2em] text-[#1A1A1A]/80 transition-colors duration-500 hover:text-[#D4AF37]"
               >
                 {l.label}
               </a>
             ))}
             <a
-              href="mailto:diego.ruiz@avenueadvisors.ai?subject=Consultation%20Request"
-              className="btn-ghost text-xs px-5 py-2.5"
+              href="mailto:hola@islapresencia.com?subject=Consulta%20Inicial"
+              className="btn-secondary-lux inline-flex items-center"
             >
-              Schedule a Consultation
+              Consulta gratis
             </a>
           </div>
 
-          {/* Mobile burger */}
           <button
             onClick={() => setOpen(!open)}
-            className="relative z-[60] md:hidden text-white/80 hover:text-white transition-colors"
+            className="relative z-[70] md:hidden text-[#1A1A1A]"
             aria-label="Toggle menu"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
-      {/* ── Full-screen mobile menu ─────────────────────────── */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" as const }}
-            className="fixed inset-0 z-[55] bg-navy-deep/[0.98] backdrop-blur-xl md:hidden flex flex-col items-center justify-center gap-8"
-          >
-            {links.map((l, i) => (
-              <motion.a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{
-                  duration: 0.3,
-                  delay: i * 0.06,
-                  ease: "easeOut" as const,
-                }}
-                className="text-2xl text-white font-[family-name:var(--font-display)] hover:text-blue-light transition-colors"
-              >
-                {l.label}
-              </motion.a>
-            ))}
-            <motion.a
-              href="mailto:diego.ruiz@avenueadvisors.ai?subject=Consultation%20Request"
+      {open && (
+        <div className="fixed inset-0 z-[65] flex flex-col items-center justify-center gap-7 bg-[#F9F8F6] md:hidden">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
               onClick={() => setOpen(false)}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{
-                duration: 0.3,
-                delay: links.length * 0.06,
-                ease: "easeOut" as const,
-              }}
-              className="btn-primary text-sm mt-4"
+              className="font-[family-name:var(--font-display)] text-4xl text-[#1A1A1A] transition-colors duration-500 hover:text-[#D4AF37]"
             >
-              Schedule a Consultation
-            </motion.a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {l.label}
+            </a>
+          ))}
+          <a
+            href="mailto:hola@islapresencia.com?subject=Consulta%20Inicial"
+            onClick={() => setOpen(false)}
+            className="btn-primary-lux mt-3"
+          >
+            <span className="btn-primary-fill" />
+            <span className="btn-primary-content">Book a free consultation</span>
+          </a>
+        </div>
+      )}
     </>
   );
 }

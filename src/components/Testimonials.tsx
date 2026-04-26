@@ -1,127 +1,80 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Quote } from "lucide-react";
-
 const testimonials = [
   {
     quote:
-      "Our quarterly close used to take two weeks. Avenue rebuilt the pipeline and got it down to two days. My team actually has time for real work now.",
-    role: "VP of Asset Management",
-    org: "Multifamily Owner-Operator \u00b7 12,000+ Units",
-    metric: "85% faster reporting cycles",
+      "Nos rediseñaron la web completa y en seis semanas empezamos a recibir consultas de clientes que antes ni sabian que existiamos.",
+    role: "Fundadora",
+    org: "Clinica de bienestar, San Juan",
+    metric: "+63% solicitudes de cita",
+    image:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=220&q=80",
   },
   {
     quote:
-      "Every other firm pitched us cookie-cutter dashboards. Avenue actually sat down and learned how we report to our LPs. The tool they built is the only one my analysts open every morning.",
-    role: "Managing Director, Portfolio Analytics",
-    org: "Institutional Investment Manager \u00b7 $4B+ AUM",
-    metric: "100% analyst adoption",
+      "Por primera vez nuestra presencia se siente consistente en Google, Instagram y la pagina. El negocio se ve serio y eso cambia todo.",
+    role: "Director General",
+    org: "Empresa de servicios para el hogar, Ponce",
+    metric: "Top 3 local en keywords clave",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=220&q=80",
   },
   {
     quote:
-      "We had a paralegal spending days on lease abstractions. Avenue automated the whole thing with a review step baked in. Freed up three people for higher-impact projects.",
-    role: "Chief Operating Officer",
-    org: "National Office & Industrial Platform",
-    metric: "3 FTEs redeployed to strategy",
+      "No solo disenaron bonito. Construyeron un sistema comercial que nuestro equipo entiende y puede operar sin depender de terceros.",
+    role: "Co-fundadora",
+    org: "Marca retail local, Mayaguez",
+    metric: "2.4x conversion web-to-WhatsApp",
+    image:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=220&q=80",
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.72, ease: "easeOut" as const },
-  },
-};
-
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
 export default function Testimonials() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  const cards = [...testimonials, ...testimonials];
-
   return (
-    <section
-      id="testimonials"
-      className="relative py-28 sm:py-36 overflow-hidden"
-      aria-label="Client testimonials"
-    >
-      <div
-        className="dot-matrix absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-      />
+    <section id="testimonials" className="border-t border-[#1A1A1A]/15 py-24 md:py-32" aria-label="Client testimonials">
+      <div className="lux-container">
+        <p className="section-label mb-5">Testimonios</p>
+        <h2 className="max-w-4xl font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-[#1A1A1A] md:text-7xl">
+          Marcas locales que
+          <br />
+          ya viven esta <span className="italic text-[#D4AF37]">transformacion</span>
+        </h2>
 
-      <div ref={ref} className="relative z-10 mx-auto max-w-7xl px-6">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="text-center mb-14 sm:mb-18"
-        >
-          <motion.p variants={fadeUp} className="label-uppercase mb-4">
-            Client Impact
-          </motion.p>
-          <motion.h2
-            variants={fadeUp}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight font-[family-name:var(--font-display)]"
-          >
-            Trusted by CRE operators who demand{" "}
-            <span className="gradient-text">results</span>
-          </motion.h2>
-        </motion.div>
-
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
-          <div className="relative">
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-20 z-10 bg-gradient-to-r from-[var(--navy-deep)] to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-20 z-10 bg-gradient-to-l from-[var(--navy-deep)] to-transparent" />
-
-            <div className="overflow-hidden">
-              <div className="testimonial-track flex gap-5">
-                {cards.map((t, i) => (
-                  <div
-                    key={i}
-                    className="glass-card shrink-0 w-[85vw] sm:w-[420px] flex flex-col hover:!transform-none"
-                  >
-                    <Quote
-                      size={18}
-                      className="text-blue-electric/30 mb-3 shrink-0"
-                      strokeWidth={1.5}
-                    />
-                    <blockquote className="text-[0.9rem] text-silver/80 leading-relaxed mb-4 flex-1">
-                      &ldquo;{t.quote}&rdquo;
-                    </blockquote>
-
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-electric/[0.07] border border-blue-electric/[0.12] mb-4 self-start">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-electric animate-pulse" />
-                      <span className="text-xs font-medium text-blue-light font-[family-name:var(--font-mono)] tracking-wide">
-                        {t.metric}
-                      </span>
-                    </div>
-
-                    <div className="border-t border-white/[0.06] pt-3">
-                      <p className="text-sm font-medium text-white font-[family-name:var(--font-display)]">
-                        {t.role}
-                      </p>
-                      <p className="text-xs text-silver/45 mt-0.5">{t.org}</p>
-                    </div>
-                  </div>
-                ))}
+        <div className="mt-14 grid gap-7 md:grid-cols-3">
+          {testimonials.map((t) => (
+            <article
+              key={t.metric}
+              className="group border-l border-[#1A1A1A]/20 px-6 py-7 transition-all duration-700 ease-out hover:border-l-[#D4AF37] hover:pl-8"
+            >
+              <div className="mb-5 flex items-center gap-1 text-[#D4AF37] transition-transform duration-500 group-hover:scale-110">
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
               </div>
-            </div>
-          </div>
-        </motion.div>
+              <blockquote className="text-base leading-relaxed text-[#6C6863]">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <p className="mt-5 inline-block border border-[#D4AF37]/35 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-[#6C6863]">
+                {t.metric}
+              </p>
+              <div className="mt-6 flex items-center gap-3 border-t border-[#1A1A1A]/15 pt-5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={t.image}
+                  alt={t.role}
+                  className="image-editorial h-12 w-12 object-cover"
+                />
+                <div>
+                  <p className="font-[family-name:var(--font-display)] text-xl text-[#1A1A1A] transition-colors duration-500 group-hover:text-[#D4AF37]">
+                    {t.role}
+                  </p>
+                  <p className="text-xs uppercase tracking-[0.18em] text-[#6C6863]">{t.org}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

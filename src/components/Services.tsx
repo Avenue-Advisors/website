@@ -1,94 +1,59 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Shield, BarChart3, Brain, Workflow } from "lucide-react";
+import { Globe, Search, Megaphone, LineChart } from "lucide-react";
 
 const services = [
   {
     num: "01",
-    Icon: Shield,
-    title: "Data Governance",
-    desc: "Establish robust frameworks for data quality, lineage tracking, and regulatory compliance across your entire portfolio.",
+    Icon: Globe,
+    title: "Creacion y rediseno web",
+    desc: "Sitios elegantes, veloces y preparados para convertir visitas en llamadas, reservas o compras.",
   },
   {
     num: "02",
-    Icon: BarChart3,
-    title: "Data Analysis & Reporting",
-    desc: "Transform raw property data into actionable intelligence with custom dashboards and automated reporting pipelines.",
+    Icon: Search,
+    title: "SEO local y tecnico",
+    desc: "Optimizacion para que tu negocio aparezca donde importa: Google Search, Maps y resultados por municipio.",
   },
   {
     num: "03",
-    Icon: Brain,
-    title: "AI Implementation",
-    desc: "Deploy production-ready machine learning models for predictive analytics, valuation, and market intelligence.",
+    Icon: Megaphone,
+    title: "Estrategia omnicanal",
+    desc: "Unificamos web, redes, anuncios, email y mensajeria para una marca consistente que genera confianza.",
   },
   {
     num: "04",
-    Icon: Workflow,
-    title: "Agentic AI Workflows",
-    desc: "Build autonomous AI systems that execute complex multi-step processes\u200A\u2014\u200Afrom data ingestion to decision support.",
+    Icon: LineChart,
+    title: "Analitica y mejora continua",
+    desc: "Medimos embudos y conversiones cada mes para que tu presencia digital crezca con decisiones claras.",
   },
 ];
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.14 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 36 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.72, ease: "easeOut" as const },
-  },
-};
-
 export default function Services() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="services" className="py-28 sm:py-36 relative" aria-label="Services">
-      <div ref={ref} className="mx-auto max-w-7xl px-6">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
-          <motion.p variants={item} className="label-uppercase mb-4">
-            What We Build
-          </motion.p>
-          <motion.h2
-            variants={item}
-            className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] max-w-2xl leading-tight"
-          >
-            Precision-Engineered Data Solutions
-          </motion.h2>
+    <section id="services" className="border-t border-[#1A1A1A]/15 py-24 md:py-32" aria-label="Services">
+      <div className="lux-container">
+        <p className="section-label mb-5">Servicios clave</p>
+        <h2 className="max-w-4xl font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-[#1A1A1A] md:text-7xl">
+          Soluciones <span className="italic text-[#D4AF37]">curadas</span> para marcas que quieren crecer localmente
+        </h2>
 
-          <motion.div
-            variants={container}
-            className="mt-14 grid gap-6 sm:grid-cols-2"
-          >
-            {services.map((s) => (
-              <motion.div key={s.num} variants={item} className="glass-card group">
-                <span className="block text-3xl sm:text-4xl font-bold text-navy-bright/40 font-[family-name:var(--font-mono)] mb-4 select-none">
-                  {s.num}
-                </span>
-                <s.Icon
-                  size={28}
-                  className="text-blue-light mb-4 transition-colors duration-300 group-hover:text-blue-electric"
-                  strokeWidth={1.5}
-                />
-                <h3 className="text-xl font-semibold text-white font-[family-name:var(--font-display)] mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-silver/70 text-sm leading-relaxed">{s.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {services.map((s) => (
+            <article key={s.num} className="editorial-card group">
+              <span className="mb-4 block font-[family-name:var(--font-display)] text-4xl text-[#1A1A1A]/25">
+                {s.num}
+              </span>
+              <s.Icon
+                size={26}
+                className="mb-4 text-[#1A1A1A]/70 transition-colors duration-500 group-hover:text-[#D4AF37]"
+                strokeWidth={1.5}
+              />
+              <h3 className="mb-2 font-[family-name:var(--font-display)] text-3xl leading-tight text-[#1A1A1A]">
+                {s.title}
+              </h3>
+              <p className="max-w-md text-base leading-relaxed text-[#6C6863]">{s.desc}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
