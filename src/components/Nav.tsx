@@ -2,17 +2,28 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/components/LanguageProvider";
 
-const links = [
-  { label: "Servicios", href: "#services" },
-  { label: "Proceso", href: "#process" },
-  { label: "Sectores", href: "#industries" },
-  { label: "Contacto", href: "#contact" },
-];
+const linksByLanguage = {
+  es: [
+    { label: "Historia", href: "#chapter-01" },
+    { label: "Sistema", href: "#chapter-02" },
+    { label: "Resultados", href: "#chapter-04" },
+    { label: "Contacto", href: "#contact" },
+  ],
+  en: [
+    { label: "Story", href: "#chapter-01" },
+    { label: "System", href: "#chapter-02" },
+    { label: "Results", href: "#chapter-04" },
+    { label: "Contact", href: "#contact" },
+  ],
+} as const;
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  const links = linksByLanguage[language];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -67,11 +78,33 @@ export default function Nav() {
                 {l.label}
               </a>
             ))}
+            <div className="inline-flex items-center border border-[#0F2742]/20 text-[10px] uppercase tracking-[0.18em]">
+              <button
+                onClick={() => setLanguage("es")}
+                className={`px-3 py-2 transition-colors duration-300 ${
+                  language === "es" ? "bg-[#0F2742] text-[#F4F8FF]" : "text-[#0F2742]/75"
+                }`}
+                aria-label="Cambiar a espanol"
+              >
+                ES
+              </button>
+              <button
+                onClick={() => setLanguage("en")}
+                className={`px-3 py-2 transition-colors duration-300 ${
+                  language === "en" ? "bg-[#0F2742] text-[#F4F8FF]" : "text-[#0F2742]/75"
+                }`}
+                aria-label="Switch to English"
+              >
+                EN
+              </button>
+            </div>
             <a
-              href="mailto:diego.ruiz@avenueadvisors.ai?subject=Consulta%20Inicial"
+              href={`mailto:diego.ruiz@avenueadvisors.ai?subject=${
+                language === "es" ? "Consulta%20Inicial" : "Initial%20Consultation"
+              }`}
               className="btn-secondary-lux inline-flex items-center"
             >
-              Consulta gratis
+              {language === "es" ? "Consulta gratis" : "Free consultation"}
             </a>
           </div>
 
@@ -97,13 +130,33 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
+          <div className="inline-flex items-center border border-[#0F2742]/20 text-xs uppercase tracking-[0.18em]">
+            <button
+              onClick={() => setLanguage("es")}
+              className={`px-3 py-2 ${language === "es" ? "bg-[#0F2742] text-[#F4F8FF]" : "text-[#0F2742]/75"}`}
+              aria-label="Cambiar a espanol"
+            >
+              ES
+            </button>
+            <button
+              onClick={() => setLanguage("en")}
+              className={`px-3 py-2 ${language === "en" ? "bg-[#0F2742] text-[#F4F8FF]" : "text-[#0F2742]/75"}`}
+              aria-label="Switch to English"
+            >
+              EN
+            </button>
+          </div>
           <a
-            href="mailto:diego.ruiz@avenueadvisors.ai?subject=Consulta%20Inicial"
+            href={`mailto:diego.ruiz@avenueadvisors.ai?subject=${
+              language === "es" ? "Consulta%20Inicial" : "Initial%20Consultation"
+            }`}
             onClick={() => setOpen(false)}
             className="btn-primary-lux mt-3"
           >
             <span className="btn-primary-fill" />
-            <span className="btn-primary-content">Book a free consultation</span>
+            <span className="btn-primary-content">
+              {language === "es" ? "Reserva consulta" : "Book a free consultation"}
+            </span>
           </a>
         </div>
       )}

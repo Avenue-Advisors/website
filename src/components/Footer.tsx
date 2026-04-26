@@ -1,25 +1,48 @@
 "use client";
 
+import { useLanguage } from "@/components/LanguageProvider";
 
-const colServices = [
-  { label: "Diseno web", href: "#services" },
-  { label: "SEO local", href: "#services" },
-  { label: "Omnichannel", href: "#services" },
-  { label: "Analitica", href: "#services" },
-];
-
-const colCompany = [
-  { label: "Nosotros", href: "#about" },
-  { label: "Proceso", href: "#process" },
-  { label: "Sectores", href: "#industries" },
-];
-
-const colConnect = [
-  { label: "Contacto", href: "#contact" },
-  { label: "Instagram", href: "https://instagram.com" },
-];
+const columnsByLanguage = {
+  es: {
+    services: [
+      { label: "Diseno web", href: "#chapter-01" },
+      { label: "SEO local", href: "#chapter-02" },
+      { label: "Omnichannel", href: "#chapter-03" },
+      { label: "Analitica", href: "#chapter-04" },
+    ],
+    company: [
+      { label: "Historia", href: "#chapter-01" },
+      { label: "Sistema", href: "#chapter-02" },
+      { label: "Resultados", href: "#chapter-04" },
+    ],
+    connect: [
+      { label: "Contacto", href: "#contact" },
+      { label: "Instagram", href: "https://instagram.com" },
+    ],
+  },
+  en: {
+    services: [
+      { label: "Web design", href: "#chapter-01" },
+      { label: "Local SEO", href: "#chapter-02" },
+      { label: "Omnichannel", href: "#chapter-03" },
+      { label: "Analytics", href: "#chapter-04" },
+    ],
+    company: [
+      { label: "Story", href: "#chapter-01" },
+      { label: "System", href: "#chapter-02" },
+      { label: "Results", href: "#chapter-04" },
+    ],
+    connect: [
+      { label: "Contact", href: "#contact" },
+      { label: "Instagram", href: "https://instagram.com" },
+    ],
+  },
+} as const;
 
 export default function Footer() {
+  const { language } = useLanguage();
+  const columns = columnsByLanguage[language];
+
   return (
     <footer className="relative bg-[#F4F8FF] pb-10 pt-20" aria-label="Site footer">
       <div className="edge-line mb-16" />
@@ -35,14 +58,16 @@ export default function Footer() {
               height={28}
             />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#4F6680]">
-              Websites, SEO y presencia digital para PyMEs en Puerto Rico.
+              {language === "es"
+                ? "Websites, SEO y presencia digital para PyMEs en Puerto Rico."
+                : "Websites, SEO, and digital presence for SMBs in Puerto Rico."}
             </p>
           </div>
 
           <div>
-            <h4 className="section-label mb-4">Servicios</h4>
+            <h4 className="section-label mb-4">{language === "es" ? "Servicios" : "Services"}</h4>
             <ul className="space-y-2.5">
-              {colServices.map((l) => (
+              {columns.services.map((l) => (
                 <li key={l.label}>
                   <a
                     href={l.href}
@@ -56,9 +81,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="section-label mb-4">Empresa</h4>
+            <h4 className="section-label mb-4">{language === "es" ? "Empresa" : "Company"}</h4>
             <ul className="space-y-2.5">
-              {colCompany.map((l) => (
+              {columns.company.map((l) => (
                 <li key={l.label}>
                   <a
                     href={l.href}
@@ -72,9 +97,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="section-label mb-4">Conecta</h4>
+            <h4 className="section-label mb-4">{language === "es" ? "Conecta" : "Connect"}</h4>
             <ul className="space-y-2.5">
-              {colConnect.map((l) => (
+              {columns.connect.map((l) => (
                 <li key={l.label}>
                   <a
                     href={l.href}
